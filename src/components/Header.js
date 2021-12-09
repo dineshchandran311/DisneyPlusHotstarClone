@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, { useEffect } from 'react';
 import { auth, provider } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { selectUserName, selectUserPhoto, setUserLoginDetails, setSignOutState } from "../features/userSlice";
 
 export default function Header() {
@@ -13,11 +13,15 @@ export default function Header() {
     const userPhoto = useSelector(selectUserPhoto);
 
     useEffect(() => {
-        auth.onAuthStateChanged(async (user) => {
+        auth
+        .onAuthStateChanged(async (user) => {
           if (user) {
             setUser(user);
+            history.push('/home');
           }
-        });
+        })
+
+        
     }, [userName]);
 
     const handleAuth = ()=>{
@@ -26,6 +30,7 @@ export default function Header() {
               .signInWithPopup(provider)
               .then((result) => {
                 setUser(result.user);
+                history.push('/home');
               })
               .catch((error) => {
                 alert(error.message);
@@ -37,6 +42,7 @@ export default function Header() {
               .signOut()
               .then(() => {
                 dispatch(setSignOutState());
+                history.push('/');
               })
               .catch((err) => alert(err.message));
           }
