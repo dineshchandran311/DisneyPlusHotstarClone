@@ -4,13 +4,13 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAMBV8jgJiSE-RdujvGCNGEC190OllJQUQ",
-  authDomain: "disney-clone-cd311.firebaseapp.com",
-  projectId: "disney-clone-cd311",
-  storageBucket: "disney-clone-cd311.appspot.com",
-  messagingSenderId: "928108703548",
-  appId: "1:928108703548:web:f40e46eeb6d0dccaaeb839",
-  measurementId: "${config.measurementId}"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY ,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId:process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT
 };
 
 const app = firebase.initializeApp(firebaseConfig);
